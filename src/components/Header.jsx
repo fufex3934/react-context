@@ -1,24 +1,24 @@
 import { useTheme } from "../context/ThemeContext";
-
+import { useAuth } from "../context/AuthContext";
 const Header = () => {
-  const {theme,toggleTheme} = useTheme();
+  const { theme, toggleTheme } = useTheme();
+  const { user, logout } = useAuth();
   return (
     <header
-    style={{
-        background: theme === 'light' ? '#f4f4f4' : '#333',
-        color: theme === 'light' ? '#000' : '#fff',
-        padding: '1rem',
-        textAlign: 'center',
+      style={{
+        background: theme === "light" ? "#f4f4f4" : "#333",
+        color: theme === "light" ? "#000" : "#fff",
+        padding: "1rem",
+        textAlign: "center",
       }}
     >
-      <h1>{theme === 'light' ? 'Light Mode':'Dark Mode'}</h1>
-      <button 
-      onClick={toggleTheme}
-      >
-        Switch to {theme === 'light' ? 'Dark':'Light'}
+      <h1>Hello,{user ? user.name : "Guest"}</h1>
+      <button onClick={toggleTheme}>
+        Switch to {theme === "light" ? "Dark" : "Light"}
       </button>
+      {user && <button onClick={logout}>logout</button>}
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
