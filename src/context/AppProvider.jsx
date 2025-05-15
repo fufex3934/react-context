@@ -1,10 +1,12 @@
 import { ThemeProvider } from "./ThemeContext";
 import { AuthProvider } from "./AuthContext";
-
+import { AbilityProvider } from "./AbilityContext";
 const AppProvider = ({ children }) => {
   return (
     <AuthProvider>
-      <ThemeProvider>{children}</ThemeProvider>
+      <AbilityProvider>
+        <ThemeProvider>{children}</ThemeProvider>
+      </AbilityProvider>
     </AuthProvider>
   );
 };
